@@ -1,0 +1,53 @@
+@inject Microsoft.Extensions.Localization.IStringLocalizer<Index> L
+@page "/"
+<PageTitle>Czat 
+</PageTitle>
+
+<div>
+</div>
+<RadzenRow class="rz-text-align-center rz-border-info-light" Gap="1rem" Visible="true">
+    <RadzenColumn Size="3" class="rz-background-color-info-lighter rz-color-info rz-p-2 rz-p-md-3" Style="width: 100%; visibility: visible; font-weight: 400; height: 608px">
+         <RadzenPanel Style="height: 100%; width: 100%" Icon="" Visible="@panelUsers" AllowCollapse="false">
+             <HeaderTemplate>
+                 <RadzenLabel Text="Użytkownicy" />
+ 
+             </HeaderTemplate>
+             <ChildContent>
+                 <RadzenListBox @bind-Value=@list Data=@co Style="height: 100%; width: 100%; max-height: 600px" Multiple="false"></RadzenListBox>
+             </ChildContent>
+         </RadzenPanel>
+    </RadzenColumn>
+     <RadzenColumn Size="3" class="rz-background-color-info-lighter rz-color-info rz-p-2 rz-p-md-3" Style="width: 100%; height: 608px">
+       <RadzenPanel Style="height: 100%; width: 100%" Icon="" Visible="true" Collapsed="false" AllowCollapse="false" Text="Emoticon">
+         <div style="height: 100%; width: 100%">
+         @foreach (var c in emojis)
+         {
+         <button type="button" class="btn btn-primary m-1" @onclick="(() => AddEmoji(c))">@c</button>
+         }
+         </div>
+          </RadzenPanel>
+    </RadzenColumn>                                                                                             
+    <RadzenColumn Size="6" class="rz-background-color-info-lighter rz-color-info rz-p-2 rz-p-md-5" Style="height: 608px; width: 100%; padding: 12px">
+    <RadzenPanel Style="height: 100%; width: 100%" Icon="" Visible="true" Collapsed="false" AllowCollapse="false" Text="">
+    <HeaderTemplate>
+                <RadzenButton Style="height: 20px; text-align: left" Size="Radzen.ButtonSize.ExtraSmall" Text="@button0text" Click="@Button0Click"></RadzenButton>
+        <RadzenLabel Text="Twój Nick:" />
+        <RadzenTextBox Style="height: 24px; background-color: #ffffff; width: 60%"  @bind-Value=@nick></RadzenTextBox>
+        <RadzenButton Style="height: 20px; width: 61px" Size="Radzen.ButtonSize.ExtraSmall" Text="Połącz" Click="@Button4Click" Disabled="@but2Dis"></RadzenButton>
+        <RadzenButton Style="height: 21px; width: 68px" Size="Radzen.ButtonSize.ExtraSmall" Text="Rozłącz" Click="@Button3Click" Disabled="@but1Dis" ButtonStyle="Radzen.ButtonStyle.Primary"></RadzenButton>
+        <RadzenLabel Text="@labeltext" Visible="@labelnick" Style="color: #ff2800" />
+    </HeaderTemplate>
+      <ChildContent>
+
+        <RadzenHtmlEditor  Mode="Radzen.HtmlEditorMode.Design" @bind-Value=@ss Style="height: 381px; display: list-item" Disabled="false">
+            <RadzenHtmlEditorAlignRight></RadzenHtmlEditorAlignRight>
+            <RadzenHtmlEditorAlignLeft></RadzenHtmlEditorAlignLeft>
+        </RadzenHtmlEditor>
+            </ChildContent>  
+      <FooterTemplate>
+          <RadzenTextArea Style="width: 100%" @bind-Value="@ed"></RadzenTextArea>
+          <RadzenButton Text="Wyślij" Click="@Button2Click" Disabled="@but1Dis" Style="height: 34px"></RadzenButton>
+      </FooterTemplate>
+         </RadzenPanel>
+    </RadzenColumn>
+</RadzenRow>
