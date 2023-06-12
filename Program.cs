@@ -14,11 +14,6 @@ builder.Services.AddTransient(sp => new HttpClient { BaseAddress = new Uri(build
 //var app = builder.Build();
 var host = builder.Build();
 var jsRuntime = host.Services.GetRequiredService<Microsoft.JSInterop.IJSRuntime>();
-var culture = await jsRuntime.InvokeAsync<string>("Radzen.getCulture");
-if (!string.IsNullOrEmpty(culture))
-{
-    CultureInfo.DefaultThreadCurrentCulture = new CultureInfo(culture);
-    CultureInfo.DefaultThreadCurrentUICulture = new CultureInfo(culture);
-}
+
 
 await host.RunAsync();
