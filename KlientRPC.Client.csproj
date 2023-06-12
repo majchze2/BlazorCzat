@@ -19,7 +19,7 @@
     <PackageReference Include="System.Net.Http.Json" Version="7.0.0" />
     <PackageReference Include="Radzen.Blazor" Version="4.11.1" />
     <Compile Include="../Server/Models/**/*.cs" />
-    <PackageReference Include="Microsoft.Extensions.Localization" Version="7.0.0" />
+
   </ItemGroup>
   <ItemGroup>
     <Protobuf Include="Protos\czat.proto" GrpcServices="Client" />
